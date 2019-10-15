@@ -1,0 +1,38 @@
+{
+  "name": "electron-react-ts",
+  "version": "0.0.1",
+  "description": "ts + react + mobx + electron + antd",
+  "main": "src/main",
+  "repository": "https://github.com/JokerDr/electron-react-ts",
+  "author": "袁庆龙",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --config build/webpack.config.base.js --mode development",
+    "test": "b",
+    "electron:build": "d"
+  },
+  "dependencies": {
+    "antd": "^3.23.6",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.6",
+    "@types/react-dom": "^16.9.2",
+    "cache-loader": "^4.1.0",
+    "css-loader": "^3.2.0",
+    "css-modules-typescript-loader": "^3.0.1",
+    "fibers": "^4.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "style-loader": "^1.0.0",
+    "ts-import-plugin": "^1.6.1",
+    "ts-loader": "^6.2.0",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  }
+}
