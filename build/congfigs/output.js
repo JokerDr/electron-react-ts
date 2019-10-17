@@ -2,6 +2,6 @@ const {pathResolve} = require('../utils');
 
 
 module.exports = {
-    filename: '[name].js',
+    filename: 'js/[name].js',
     path: pathResolve('../dist/'),
 }

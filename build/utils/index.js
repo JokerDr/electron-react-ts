@@ -7,8 +7,9 @@ const pathResolve = () => {
 }
 
 const cacheDirectory = path.resolve(__dirname, '../../', 'cacheDirectory');
-
+const distDirectory = path.resolve(__dirname, '../../', 'dist')
 module.exports = {
     pathResolve: pathResolve(),
     cacheDirectory,
+    distDirectory,
 }

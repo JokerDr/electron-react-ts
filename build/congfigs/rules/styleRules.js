@@ -1,18 +1,21 @@
 const {pathResolve, cacheDirectory} = require('../../utils');
+
+const devMode = process.env.NODE_ENV !== 'production';
+
 module.exports = [
+    // src规则
     {
         // test: /\.((s[ac])|c)ss$/,
         test: /\.(le|c)ss$/,
-        
-        include: [pathResolve('../../src'), pathResolve('../../node_modules/antd/lib')],
+        include: [pathResolve('../../src')],
         use:[
+            devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
                 loader: 'cache-loader',
                 options: {
                     cacheDirectory, 
                 }
             },
-            'style-loader',
             'css-modules-typescript-loader',
             {
                 loader: 'css-loader',
@@ -21,15 +24,15 @@ module.exports = [
                   localsConvention: 'camelCase',
                   sourceMap: true
                 }
-            },{
+            },
+            {
                 loader: 'less-loader',
                 options: {
                     // 禁止内联js代码
                     javascriptEnabled: true,
                     sourceMap: true,
                     noIeCompat: true,
-                    paths: [pathResolve('../../src/renderers/styles')],
-                    // modifyVars: theme
+                    paths: [pathResolve('../../src/renderers/styles'),],
                 }
             }
         //     {
@@ -45,5 +48,36 @@ module.exports = [
         //     }
         ],
 
+    },
+    // antd规则
+    {
+        test: /\.(le|c)ss$/, 
+        include:[pathResolve('../../node_modules/antd')],
+        use:[
+            {
+                loader: 'cache-loader',
+                options: {
+                    cacheDirectory, 
+                }
+            },
+            'style-loader',
+            'css-modules-typescript-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                  localsConvention: 'camelCase',
+                  sourceMap: true
+                }
+            },
+            {
+                loader: 'less-loader',
+                options: {
+                    // 禁止内联js代码
+                    javascriptEnabled: true,
+                    sourceMap: true,
+                    noIeCompat: true,
+                }
+            }
+        ]
     }
 ]

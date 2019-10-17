@@ -1,20 +1,28 @@
 import * as React from 'react';
 import {
-    Button
+    Button,
+    Input
 } from 'antd';
+import * as styles from '@renderers/views/a/index.less';
 
-
-@log
-export class Test extends React.PureComponent {
+export class Test extends React.Component {
+    private handleClick = () => {
+    
+    }
     render(){
         return (
             <div>
-                <Button type="primary">Primary</Button>
+                <Button 
+                    onClick={this.handleClick}
+                    type="primary"
+                >
+                    Primary
+                </Button>
+                <div className={styles.test}>
+                    test
+                </div>
+                <Input placeholder="Basic usage" />
             </div>
         )
     }
-}
-
-function log (target: any){
-    console.log('装饰器')
 }

@@ -10,35 +10,36 @@ antd [https://ant.design/index-cn]
 electron [https://electronjs.org/docs]
 
 # 项目结构：
-|-build webpack4配置项
-|   |-configs webpack的配置文件夹
-|   |   |-rules 插件规则文件夹
-|   |   |   |-img-rules.js 图片插件规则配置
-|   |   |   |-js-rules.js js 插件规则配置
-|   |   |   |-style-rules.js 样式表规则配置
-|   |-utils webpack工具函数
-|   |-webpack.config.base.js webpack的基础配置
-|   |-webpack.config.dev.js webpack的开发环境配置
-|   |-webpack.config.prod.js webpack的生产环境的配置
-|-dist 项目输出目录(未打包)
-|-electron-dist 程序输出目录(打包后的程序)
-|-src 源码文件夹
-|   |-main 主进程
-|   |-renderers 渲染进程
-|   |   |-components 公共组件
-|   |   |   |- a.ts
-|   |   |   |- a.tsx
-|   |   |-views electron窗口
-|   |-assets 静态资源目录
-|   |-constants 常量配置
-|   |   |-enums 常量枚举
-|   |-typings ts类型声明
-|   |-utils 常用工具函数
-|-NORE.md 开发规范文档
-|-PROJECT.md 项目文档
-|-README.md 描述文档 
-|-TS-Config-Detail ts配置文件详解
-
+```bash
+  |-build webpack4配置项
+  |   |-configs webpack的配置文件夹
+  |   |   |-rules 插件规则文件夹
+  |   |   |   |-img-rules.js 图片插件规则配置
+  |   |   |   |-js-rules.js js 插件规则配置
+  |   |   |   |-style-rules.js 样式表规则配置
+  |   |-utils webpack工具函数
+  |   |-webpack.config.base.js webpack的基础配置
+  |   |-webpack.config.dev.js webpack的开发环境配置
+  |   |-webpack.config.prod.js webpack的生产环境的配置
+  |-dist 项目输出目录(未打包)
+  |-electron-dist 程序输出目录(打包后的程序)
+  |-src 源码文件夹
+  |   |-main 主进程
+  |   |-renderers 渲染进程
+  |   |   |-components 公共组件
+  |   |   |   |- a.ts
+  |   |   |   |- a.tsx
+  |   |   |-views electron窗口
+  |   |-assets 静态资源目录
+  |   |-constants 常量配置
+  |   |   |-enums 常量枚举
+  |   |-typings ts类型声明
+  |   |-utils 常用工具函数
+  |-NORE.md 开发规范文档
+  |-PROJECT.md 项目文档
+  |-README.md 描述文档 
+  |-TS-Config-Detail ts配置文件详解
+```
 
 
 # 需求分析
@@ -194,6 +195,43 @@ img 13
 关键点： 按需导入
 
 ```bash 
-yarn add ts-import-plugin --dev
+ yarn add ts-import-plugin --dev (或者下面 二选一)
+ yarn add babel-loader @babel/core @babel/preset-env  babel-plugin-import --dev
 ```
-然后按照官网配置即可
+-1：选择babel做转换(不推薦)
+首先尝试了在根目录下建立.babelrc文件，结果引入无效，好吧，我们换个方式，直接在webpack中引入babel相关的配置，由于我们使用了ts-loader
+因为ts-loader是将ts代码装换为js代码，而babel则是将js代码转化为制定结构的js代码，并且之前我们提到过，loader加载顺序由下及上，所以，babel要写在ts-loader的前面
+-2： 直接选择ts-import-plugin, 那么直接按照官网教程即可
+
+問題修復： ts-import-plugin 之所以會出現無法按需導入的情況，是因为我们在css-loader的options中开启了modules: true,这项，所以解决方案是：我们可以单独写一天antd的规则与src的规则区分开即可
+img 14，
+img 15
+
+
+18. 状态管理工具的选择
+react使用的状态管理工具的选择：
+最原始的自然就是 react自身所带的state或者props了，但是对于业务的使用来讲其实非常的麻烦，因此自然也不是我们想要的，
+当然我们也可以使用的react函数式的编程中的hook，但对于这一点，我使用经验不多，所以暂且放弃，后续有时间继续探究，
+所以我们选择的时mobx
+如果有使用的vue的同学，那么可以说对mobx的写法可以说的非常的熟悉了，同样是数据双向绑定；
+话不多说：
+```bash
+yarn add  mobx mobx-react
+```
+configure({enforceActions: 'observed'})用于限制被observable(也就是store中添加了@observable)的数据的修改方式，让其只能添加了@action的函数中进行修改。
+
+19. 集成svg-component
+```bash
+yarn add @svgr/webpack --dev
+```
+按照官方教程配置即可。另外如果ts报错，新建相应的d.ts的文件即可
+
+
+20.打包与分离
+
+css
+```bash
+只支持webpack4
+ yarn add mini-css-extract-plugin --dev
+```
+在html-webpack-plugin

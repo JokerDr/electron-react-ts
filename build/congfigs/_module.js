@@ -1,11 +1,13 @@
-const jsRules = require('./rules/js-rules');
-const styleRules = require('./rules/style-rules');
-const imgRules = require('./rules/img-rules')
+const jsRules = require('./rules/jsRules');
+const styleRules = require('./rules/styleRules');
+const imgRules = require('./rules/imgRules');
+const fileRules = require('./rules/fileRules');
 
 module.exports = {
     rules: [
         ...jsRules,
         ...styleRules,
         ...imgRules,
+        ...fileRules,
     ]
 }
