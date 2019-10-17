@@ -1,45 +1,27 @@
 import * as React from 'react';
-import {observer} from 'mobx-react';
-import {
-    Button
-} from 'antd';
-import {ComponentExt} from '@constants/temp/ComponentExt'
-import {CounterModel} from './CounterModel';
+import { observer } from 'mobx-react';
+import { Button } from 'antd';
+import { ComponentExt } from '@constants/temp/ComponentExt';
+import { CounterModel } from './CounterModel';
 
-// interface IProps {
-//     globalStore: IGlobalStore.GlobalStore
-// }
-
-
-// @inject('globalStore')
 @observer
-export default class Counter extends ComponentExt<CounterModel> {
-    // static defaultProps = {globalStore:{}}
-    constructor(p:any, m: CounterModel){
-        super(p, m);
-        // console.log(m);
-    }
+export default class Counter<M extends CounterModel> extends ComponentExt<M> {
+  constructor(p: {}, m: M) {
+    super(p, m);
+  }
 
-    handleIncrease = async (): Promise<void>=> {
-        this.model.change();
-        // this.props.globalStore.increase();
-    }
+  public handleIncrease = async (): Promise<void> => {
+    await this.model.change();
+  }
 
-
-    render(){
-        console.log(this.model)
-        return (
-            <div>
-                <div>{
-
-                }</div>
-                <Button onClick={this.handleIncrease}>
-                    add
-                </Button>
-                <Button>
-                    del
-                </Button>
-            </div>
-        );
-    }
+  public render() {
+    const num: number = this.model.getTest();
+    return (
+      <div>
+        <div>{num}</div>
+        <Button onClick={this.handleIncrease}>add</Button>
+        <Button>del</Button>
+      </div>
+    );
+  }
 }

@@ -1,6 +1,5 @@
-import { observable } from "mobx";
+import { observable } from 'mobx';
 
 export abstract class ComponentModel {
-    @observable public Cmodel:any = {};
-    constructor(){}
+  @observable public Cmodel: any = {};
 }

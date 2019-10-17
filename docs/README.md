@@ -235,3 +235,28 @@ css
  yarn add mini-css-extract-plugin --dev
 ```
 在html-webpack-plugin
+加载当前页面需要构建的js文件。
+通常来说，我们会根据react-router分的页面来进行代码分离，再用react-loadable进行分割出来的代码的异步加载(当然你也可以将所有组件都进行代码分离然后异步加载)。
+所以在这里我们先利用react-router分两个页面home和page出来
+```bash
+
+yarn add -D react-router-dom
+```
+optimization配置...
+```bash
+yarn add -D uglifyjs-webpack-plugin optimize-css-assets-webpack-plugin
+```
+
+```bash
+yarn  add -D tslint tslint-react
+```
+```bash
+yarn add -D 
+stylelint  stylelint-config-standard 
+stylelint-less
+```
+
+```bash
+yarn add -D husky
+```
+
