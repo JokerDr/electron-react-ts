@@ -11,7 +11,7 @@ interface IComponentExt {
  * Q : queries
  * S : state
  */
-export abstract class ComponentExt<M extends ComponentModel, Q = {}, S = {}>
+export class ComponentExt<M extends ComponentModel, Q = {}, S = {}>
   extends React.Component<Q, S>
   implements IComponentExt {
   public model!: M;
@@ -20,6 +20,4 @@ export abstract class ComponentExt<M extends ComponentModel, Q = {}, S = {}>
     super(q, s);
     this.model = m;
   }
-
-  public abstract render(): React.ReactNode;
 }

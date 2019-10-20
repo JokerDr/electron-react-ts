@@ -1,12 +1,10 @@
-import { getServerHOST } from './EServerHOST'
-import { getContentTypeHandle } from './EContentTypeHandle'
+import { getServerHOST } from './EServerHOST';
+import { getContentTypeHandle } from './EContentTypeHandle';
 
 const TOKENERROR = [401, 402, 403];
 
-
-
 export default {
-    getServerHOST,
-    getContentTypeHandle,
-    TOKENERROR
-}
+  TOKENERROR,
+  getContentTypeHandle,
+  getServerHOST,
+};

@@ -1,8 +1,3 @@
-import EHTTP from './EHTTP'
+import EHTTP from './EHTTP';
 
-
-
-
-export {
-    EHTTP
-}
+export { EHTTP };

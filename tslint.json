@@ -11,7 +11,8 @@
         "indent":[true, "spaces", 4], //使用4空格进行缩进
         "interface-name": true, // 强制接口 "I" 开头
         "no-console": true, //是否允许使用console
-        "ordered-imports": false
+        "ordered-imports": false,
+        "object-literal-sort-keys": false
     },
     "rulesDirectory": []
 }

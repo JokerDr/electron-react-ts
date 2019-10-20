@@ -9,9 +9,7 @@
   "scripts": {
     "dev": "webpack-dev-server --config build/webpack.config.base.js --mode development",
     "build": "webpack --config build/webpack.config.base.js",
-    "lint": "tslint --type-check --project ./tsconfig.json && stylelint \"*.less\"",
-    "test": "b",
-    "precommit": "yarn run lint",
+    "lint": "tslint --type-check --project ./tsconfig.json && stylelint \"src/**/*.less\" --fix",
     "electron:build": "d"
   },
   "dependencies": {

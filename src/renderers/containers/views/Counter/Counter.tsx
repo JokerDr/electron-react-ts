@@ -5,9 +5,9 @@ import { ComponentExt } from '@constants/temp/ComponentExt';
 import { CounterModel } from './CounterModel';
 
 @observer
-export default class Counter<M extends CounterModel> extends ComponentExt<M> {
-  constructor(p: {}, m: M) {
-    super(p, m);
+export default class Counter extends ComponentExt<CounterModel> {
+  constructor(p: {}) {
+    super(p, new CounterModel());
   }
 
   public handleIncrease = async (): Promise<void> => {
