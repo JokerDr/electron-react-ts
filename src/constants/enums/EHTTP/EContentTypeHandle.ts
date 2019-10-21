@@ -13,7 +13,7 @@ return string || undefinedF
 */
 const getContentTypeHandle = (contentType: any): any =>
     Reflect.ownKeys(EContentTypeHandle).find(
-  (elem) => contentType.includes(elem) === true,
-);
+        (elem: any) => contentType.includes(elem) === true,
+    );
 
 export { getContentTypeHandle };

@@ -14,12 +14,12 @@ interface IComponentExt {
  * S : state
  */
 export class ComponentExt<M extends ComponentModel, Q = {}, S = {}>
-  extends React.Component<Q, S>
+    extends React.Component<Q, S>
     implements IComponentExt {
     public model!: M;
 
     constructor(q: Q, m: M, s?: S) {
         super(q, s);
-      this.model = m;
+        this.model = m;
     }
 }

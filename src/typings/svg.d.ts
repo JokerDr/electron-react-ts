@@ -1,9 +1,9 @@
 /** @format */
 
-declare interface SvgrComponent
+declare interface ISvgrComponent
     extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
 
 declare module '*.svg' {
-    const content: SvgrComponent;
+    const content: ISvgrComponent;
     export default content;
 }

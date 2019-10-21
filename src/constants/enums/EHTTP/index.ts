@@ -7,6 +7,6 @@ const TOKENERROR = [401, 402, 403];
 
 export default {
     TOKENERROR,
-  getContentTypeHandle,
-  getServerHOST,
+    getContentTypeHandle,
+    getServerHOST,
 };

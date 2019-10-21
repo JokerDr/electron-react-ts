@@ -1,13 +1,14 @@
 module.exports = {
     "env": {
         "browser": true,
-        // "es6": true,
+        "es6": true,
         "node": true
     },
     "extends": [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended',
-        "airbnb",
+      "plugin:@typescript-eslint/recommended",
+      'plugin:react/recommended',
+      "prettier",
+      "prettier/@typescript-eslint",
     ],
     "globals": {
         "Atomics": "readonly",
@@ -27,18 +28,21 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        'eqeqeq': [
+        'eqeqeq': [ // 全等 === ！==
             'error',
             'always',
             {
-                null: 'ignore'
+                'null': 'ignore'
             }
         ],
-        "allowUnderscorePrefix": "error",
-        // 类和接口的命名必须遵守帕斯卡命名法，比如 PersianCat
-        'typescript/class-name-casing': 'error',
-        "@typescript-eslint/no-empty-interface": [
-          "warn",
+        'curly': "error", //  控制快风格一致
+        'camelcase': "error", // 駝峰命名
+        'no-multiple-empty-lines': "error", // 禁止多行空行
+        '@typescript-eslint/no-explicit-any': 'off', // any类型
+        '@typescript-eslint/no-empty-interface': 'off', // 接口内容为空
+        '@typescript-eslint/interface-name-prefix': [
+          'error',
+          { 'prefixWithI': "always" }
         ]
     }
 };

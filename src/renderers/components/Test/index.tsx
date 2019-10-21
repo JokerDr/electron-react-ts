@@ -5,19 +5,19 @@ import { Button, Input } from 'antd';
 import * as styles from '@renderers/views/a/index.less';
 
 export class Test extends React.Component {
-  public render() {
+    public render(): React.ReactNode {
         return (
-      <div>
+            <div>
                 <Button onClick={this.handleClick} type="primary">
                     Primary
-        </Button>
-              <div className={styles.test}>test</div>
-              <Input placeholder="Basic usage" />
+                </Button>
+                <div className={styles.test}>test</div>
+                <Input placeholder="Basic usage" />
             </div>
         );
-  }
+    }
 
-    private handleClick = () => {
-      //   d
+    private handleClick = (): void => {
+        //   d
     };
 }

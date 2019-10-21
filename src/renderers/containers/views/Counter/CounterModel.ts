@@ -7,15 +7,15 @@ export class CounterModel extends ComponentModel {
     @observable private test = 0;
 
     constructor() {
-      super();
+        super();
     }
 
     @action
     public change(): void {
-      this.test += 1;
+        this.test += 1;
     }
 
     public getTest(): number {
-      return this.test;
+        return this.test;
     }
 }

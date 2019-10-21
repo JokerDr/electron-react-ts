@@ -23,11 +23,11 @@ interface IFetchStream {
 /**
  * 对响应数据进行解析
  */
-function handleData(
+const handleData = (
     response: any,
     resposneObj: IFetchStream,
     callback: string,
-) {
+): Promise<void> =>{
     return response[callback]().then((data: any) => {
         if (response.ok) {
             return Promise.resolve(
@@ -45,7 +45,7 @@ function handleData(
 }
 
 // 格式化数据
-function transformData(data: any) {
+function transformData(data: any): FormData | string {
     if (data instanceof FormData) {
         return data;
     }
@@ -59,7 +59,7 @@ function transformData(data: any) {
 /**
  * 生成请求方式
  */
-function createMethod(method: string) {
+const  createMethod = (method: string): Function => {
     const options: any = {};
     return async (api: string, params?: any): Promise<any> => {
         let url: string = getServerHOST() + api;
@@ -109,7 +109,7 @@ function createMethod(method: string) {
                       ); // 数据格式解析失败
             })
             .then(
-                res => res.parseData, // 返回服务端的数据
+                (res: any) => res.parseData, // 返回服务端的数据
             )
             .catch(error => {
                 // 401,402...

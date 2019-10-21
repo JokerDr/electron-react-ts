@@ -1,21 +1,21 @@
 /** @format */
 
-import {configure} from 'mobx'
-import {Provider} from 'mobx-react'
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import Counter from '../../containers/views/Counter/Counter'
+import { configure } from 'mobx';
+import { Provider } from 'mobx-react';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import Counter from '../../containers/views/Counter/Counter';
 
-const render = () => {
+const render = (): void => {
     ReactDOM.render(
         <Provider>
             <Counter />
-      </Provider>
+        </Provider>,
         document.querySelector('#app'),
-  );
-}
+    );
+};
 
 configure({
-  enforceActions: 'observed',
-})
-render()
+    enforceActions: 'observed',
+});
+render();
