@@ -246,9 +246,29 @@ optimization配置...
 ```bash
 yarn add -D uglifyjs-webpack-plugin optimize-css-assets-webpack-plugin
 ```
+不再使用ts-lint, 因为根据ts的说法，ts-lint的存在性能问题，所以将全力支援es-lint（难受），所以，这里重新配置lint工具
+eslint：javascript代码检测工具，使用espree解析器
+@typescript-eslint/parser：将 TypeScript 转换为 ESTree，使 eslint 可以识别
+@typescript-eslint/eslint-plugin：只是一个可以打开或关闭的规则列表
+prettier：prettier插件的核心代码
+eslint-config-prettier：解决ESLint中的样式规范和prettier中样式规范的冲突，以prettier的样式规范为准，使ESLint中的样式规范自动失效
+eslint-plugin-prettier：将prettier作为ESLint规范来使用
 
+作者：yuxiaoliang
+链接：https://juejin.im/post/5d1d5fe96fb9a07eaf2bae29
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```bash
-yarn  add -D tslint tslint-react
+yarn add eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
+
+添加react支持 使用airbnb的规则
+yarn add -D eslint-config-airbnb@latest eslint-plugin-import@^2.18.2 eslint-plugin-jsx-a11y@^6.2.3 eslint-plugin-react@^7.14.3 eslint-plugin-react-hooks@^1.7.0
+
+结合prettier 和eslint
+yarn add -D  prettier eslint-config-prettier eslint-plugin-prettier
+
+在vscode中使用prettier插件
+
 ```
 ```bash
 yarn add -D 
@@ -259,4 +279,5 @@ stylelint-less
 ```bash
 yarn add -D husky
 ```
+安装 EditorConfig 对应的编辑器插件， 并且建立相应的配置文件
 

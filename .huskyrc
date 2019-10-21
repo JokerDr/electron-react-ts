@@ -2,5 +2,11 @@
 {
   "hooks": {
     "pre-commit": "yarn run lint",
+  },
+  "lint-staged": {
+    "*.{.ts,.tsx}": [
+      "eslint",
+      "git add"
+    ]
   }
 }
