@@ -268,6 +268,9 @@ yarn add -D eslint-config-airbnb@latest eslint-plugin-import@^2.18.2 eslint-plug
 yarn add -D  prettier eslint-config-prettier eslint-plugin-prettier
 
 在vscode中使用prettier插件
+http://eslint.cn/docs/rules/
+https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin  rules配置
+https://prettier.io/docs/en/configuration.html
 
 ```
 ```bash
@@ -280,4 +283,36 @@ stylelint-less
 yarn add -D husky
 ```
 安装 EditorConfig 对应的编辑器插件， 并且建立相应的配置文件
+
+
+electron配置
+
+安裝electron
+```bash 
+yarn add electron -D
+```
+
+electron 調試工具
+```bash
+yarn add electron-devtools-installer -D
+```
+
+electron 構建工具
+```bash
+yarn add electron-builder -D
+```
+
+这回事我们运行yarn run dev会报错，这是因为我们的环境是web，
+但实际上electron 拥有node和browser两个环境，webpack的配置有同样有两个对应的配置electron-render 和electron-main
+但我们的配置文件只能有一份，electron-vue的做法给了我很大的启发，
+首先：
+```bash
+// 跨平台命令
+yarn add -D cross-env
+
+//
+// 命令行文字， 删除库， 命令行高亮， 多cli并行处理
+yarn add -D cfonts del chalk multispinner
+```
+
 

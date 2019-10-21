@@ -7,12 +7,13 @@ const devServer = require('./congfigs/devServer');
 const optimization = require('./congfigs/optimization');
 
 module.exports = {
-    entry, 
-    output, 
-    plugins, 
+    entry,
+    output,
+    plugins,
     resolve,
     optimization,
     module: _module,
+    // target: 'node',
     devServer,
     devtool: 'cheap-module-eval-source-map',
     // target: 'electron-renderer'
