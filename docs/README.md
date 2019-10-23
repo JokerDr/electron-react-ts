@@ -228,7 +228,11 @@ yarn add @svgr/webpack --dev
 
 
 20.打包与分离
+webpack 打包分析插件
+```bash
+yarn add -D webpack-bundle-analyzer
 
+```
 css
 ```bash
 只支持webpack4
@@ -254,10 +258,6 @@ prettier：prettier插件的核心代码
 eslint-config-prettier：解决ESLint中的样式规范和prettier中样式规范的冲突，以prettier的样式规范为准，使ESLint中的样式规范自动失效
 eslint-plugin-prettier：将prettier作为ESLint规范来使用
 
-作者：yuxiaoliang
-链接：https://juejin.im/post/5d1d5fe96fb9a07eaf2bae29
-来源：掘金
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```bash
 yarn add eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
 
@@ -307,12 +307,38 @@ yarn add electron-builder -D
 但我们的配置文件只能有一份，electron-vue的做法给了我很大的启发，
 首先：
 ```bash
-// 跨平台命令
+# 跨平台命令
 yarn add -D cross-env
 
-//
-// 命令行文字， 删除库， 命令行高亮， 多cli并行处理
+# 命令行文字， 删除库， 命令行高亮， 多cli并行处理
 yarn add -D cfonts del chalk multispinner
+
+# 热更新模块
+yarn add -D webpack-hot-middleware
 ```
+**electron下的webpack配置
+思路，看了electronVUE的写法，豁然开朗，通过分别创建两个webpack服务来执行target：electron-main和electron：electron-renderer
+，分别将生成的代码output到同一文件夹内
+
+electron require不允许使用
+```bash 
+webPreferences: {
+      nodeIntegration: true,
+}
+```
+electron内容安全策略（CSP）
+
+启动问题： 
+```bash
+Uncaught Error: [HMR] Hot Module Replacement is disabled.
+```
+解决：添加插件 new webpack.HotModuleReplacementPlugin(),
+
+webpack-bundle-analyzer 的8888端口占用的问题，可以参见官方文档或者直接去他的typings里面看一看
+找到相应的端口设置参数analyzerPort修改即可
+
+解决electron的ts写法问题
+electron 无法直接执行.ts文件，但是换一个思路，我们可以将webpack编译后的代码即为js文件，作为electron的执行入口，
+所以，过程是，webpack中的entry文件可以正常的指向main或者renderer中的入口ts文件，但是electron的启动入口文件虽然理论上和webpack的main是应该一样，但前提是我们的main是使用js文件来书写，而不是ts，但由于我们使用的就是ts，所以很尴尬，我们无法像常规操作直接指向main下的index.js文件，所以另辟蹊径，利用webpack将ts转化后输出到指定目录下，我们只要把electron指定到指定目录下的main.js即可
 
 

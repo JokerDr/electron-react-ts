@@ -1,4 +1,7 @@
 const path  = require('path');
+const { greeting } = require('./greeting');
+const { logStats } = require('./logStats');
+const { electronLog } = require('./electronLog');
 
 // utils同级目录
 const pathResolve = () => {
@@ -12,4 +15,7 @@ module.exports = {
     pathResolve: pathResolve(),
     cacheDirectory,
     distDirectory,
+    greeting,
+    logStats,
+    electronLog
 }

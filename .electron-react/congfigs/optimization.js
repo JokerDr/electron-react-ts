@@ -2,9 +2,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const optimizeCSSAssetPlugin = require('optimize-css-assets-webpack-plugin') ;
 
 module.exports = {
-    runtimeChunk: {
-        name: 'manifest'
-    },
+    // runtimeChunk: {
+    //     name: 'manifest'
+    // },
     splitChunks: {
         cacheGroups: {
             default: false,
