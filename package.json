@@ -2,7 +2,7 @@
   "name": "electron-react-ts",
   "version": "0.0.1",
   "description": "ts + react + mobx + electron + antd",
-  "main": "./src/electron/main.js",
+  "main": "main.js",
   "repository": "https://github.com/JokerDr/electron-react-ts",
   "author": "袁庆龙",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "electron-build:win32": "cross-env BUILD_TARGET=win32 node .electron-react/build.js",
     "electron-builder:linux": "electron-builder --linux deb",
     "electron-builder:win32": "electron-builder --win --x64",
-    "electron-forge:win32": "cross-env BUILD_TARGET=win32 electron-forge make",
+    "electron-forge:win32": "cross-env BUILD_TARGET=win32 electron-forge package",
     "electron-build:clean": "cross-env BUILD_TARGET=clean node .electron-react/build.js",
     "lint": "eslint src --fix --ext .ts,.tsx  && stylelint \"src/**/*.less\" --fix"
   },
