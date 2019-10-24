@@ -1,5 +1,5 @@
 const path  = require('path');
-const { greeting } = require('./greeting');
+const { devGreeting, buildGreeting } = require('./greeting');
 const { logStats } = require('./logStats');
 const { electronLog } = require('./electronLog');
 
@@ -15,7 +15,8 @@ module.exports = {
     pathResolve: pathResolve(),
     cacheDirectory,
     distDirectory,
-    greeting,
+    devGreeting,
+    buildGreeting,
     logStats,
     electronLog
 }

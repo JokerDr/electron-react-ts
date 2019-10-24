@@ -1,5 +1,5 @@
-const {cacheDirectory} = require('../../utils');
-const {pathResolve} = require('../../utils')
+const {cacheDirectory} = require('../../../utils');
+const {pathResolve} = require('../../../utils')
 const tsImportPluginFactory = require('ts-import-plugin');
 
 

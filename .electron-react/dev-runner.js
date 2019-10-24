@@ -5,9 +5,9 @@ const chalk = require('chalk');
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
 const webpackHotMiddleware = require('webpack-hot-middleware')
-const mainConfig = require('./webpack.config.main');
-const rendererConfig = require('./webpack.config.renderer');
-const {greeting, logStats, electronLog}  = require('./utils');
+const mainConfig = require('./webpack/webpack.config.main');
+const rendererConfig = require('./webpack/webpack.config.renderer');
+const {devGreeting, logStats, electronLog}  = require('./utils');
 
 
 process.env.NODE_ENV = 'development'
@@ -126,7 +126,7 @@ const mainStart = () => new Promise((resolve, reject) => {
 
 
 const init = () => {
-  greeting()
+  devGreeting()
   Promise.all([rendererStart(), mainStart()]).then(() => {
     electronStart();
   }).catch(err => {

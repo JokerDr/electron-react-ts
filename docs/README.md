@@ -341,4 +341,21 @@ webpack-bundle-analyzer 的8888端口占用的问题，可以参见官方文档�
 electron 无法直接执行.ts文件，但是换一个思路，我们可以将webpack编译后的代码即为js文件，作为electron的执行入口，
 所以，过程是，webpack中的entry文件可以正常的指向main或者renderer中的入口ts文件，但是electron的启动入口文件虽然理论上和webpack的main是应该一样，但前提是我们的main是使用js文件来书写，而不是ts，但由于我们使用的就是ts，所以很尴尬，我们无法像常规操作直接指向main下的index.js文件，所以另辟蹊径，利用webpack将ts转化后输出到指定目录下，我们只要把electron指定到指定目录下的main.js即可
 
+xxxxxx另外，如果webpack中的optimize中开启了runtimeChunk，会导致无法启动electron程序，原因有待探究
+
+
+
+
+先用webpack将包构建出来，然而，问题来了，我们无法在打包出来的main中调用index.html 原因很简单，我们无法拿到__dirname，解决方式，
+1.使用webpack的DefinePlugin插件添加__dirname 相关项
+2.使用webpack的node项开启__dirname
+```bash
+node: {
+    __dirname: process.env.NODE_ENV !== 'production',
+    __filename: process.env.NODE_ENV !== 'production'
+  },
+```
+
+打包工具 yarn add electron-packager -D
+
 

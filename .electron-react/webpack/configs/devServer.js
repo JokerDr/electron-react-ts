@@ -1,4 +1,4 @@
-const {pathResolve} = require('../utils')
+const {pathResolve} = require('../../utils')
 module.exports = {
     contentBase: pathResolve('../../src'),
     compress: true,

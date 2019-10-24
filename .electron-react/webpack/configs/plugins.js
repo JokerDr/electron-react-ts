@@ -1,5 +1,6 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const devMode = process.env.NODE_ENV !== 'production';
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const webpack = require('webpack');
@@ -7,6 +8,9 @@ const webpack = require('webpack');
 
 const main = [
   new webpack.HotModuleReplacementPlugin(),
+  // new webpack.DefinePlugin({
+
+  // }),
   new BundleAnalyzerPlugin({
     analyzerPort: 8889
   }),

@@ -8,10 +8,55 @@
   "license": "MIT",
   "scripts": {
     "dev": "node .electron-react/dev-runner.js",
-    "build": "webpack --config build/webpack.config.base.js",
-    "lint": "eslint src --fix --ext .ts,.tsx  && stylelint \"src/**/*.less\" --fix",
-    "electron:dev": "electron .",
-    "electron:build": "d"
+    "pack": "yarn run pack:main && yarn run pack:renderer",
+    "pack:main": "cross-env NODE_ENV=production webpack --mode=production --progress --colors --config .electron-react/webpack/webpack.config.main.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --mode=production --progress --colors --config .electron-react/webpack/webpack.config.renderer.js",
+    "electron-dist:start": "electron ./dist/electron/main.js",
+    "electron-build": "cross-env node .electron-react/build.js",
+    "electron-build:darwin": "cross-env BUILD_TARGET=darwin node .electron-react/build.js",
+    "electron-build:linux": "cross-env BUILD_TARGET=linux node .electron-react/build.js",
+    "electron-build:mas": "cross-env BUILD_TARGET=mas node .electron-react/build.js",
+    "electron-build:win32": "cross-env BUILD_TARGET=win32 node .electron-react/build.js",
+    "electron-builder:linux": "electron-builder --linux deb",
+    "electron-builder:win32": "electron-builder --win --x64",
+    "electron-forge:win32": "cross-env BUILD_TARGET=win32 electron-forge make",
+    "electron-build:clean": "cross-env BUILD_TARGET=clean node .electron-react/build.js",
+    "lint": "eslint src --fix --ext .ts,.tsx  && stylelint \"src/**/*.less\" --fix"
+  },
+  "config": {
+    "forge": "./.electron-react/electron-build-tools/forge.config.js"
+  },
+  "build": {
+    "productName": "xxxx",
+    "appId": "com.leon.xxxxx",
+    "copyright": "xxxx",
+    "directories": {
+      "output": "./dist/electron-packaged/"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "xxxx"
+    },
+    "files": [
+      "dist/electron/*"
+    ],
+    "dmg": {},
+    "mac": {},
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {}
   },
   "dependencies": {
     "@babel/runtime": "^7.6.3",
@@ -25,6 +70,8 @@
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
+    "@electron-forge/cli": "^6.0.0-beta.45",
+    "@electron-forge/maker-deb": "^6.0.0-beta.45",
     "@svgr/webpack": "^4.3.3",
     "@types/react": "^16.9.6",
     "@types/react-dom": "^16.9.2",
@@ -42,6 +89,7 @@
     "electron": "^6.0.12",
     "electron-builder": "^21.2.0",
     "electron-devtools-installer": "^2.2.4",
+    "electron-packager": "^14.0.6",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-prettier": "^3.1.1",
@@ -67,6 +115,7 @@
     "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2",
-    "webpack-hot-middleware": "^2.25.0"
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-merge": "^4.2.2"
   }
 }

@@ -1,5 +1,5 @@
 const TsconfigPathsWebpackPlugin = require('tsconfig-paths-webpack-plugin');
-const {pathResolve} = require('../utils');
+const {pathResolve} = require('../../utils');
 
 module.exports = {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],

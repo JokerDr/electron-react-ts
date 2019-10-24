@@ -1,4 +1,4 @@
-const {pathResolve} = require('../utils')
+const {pathResolve} = require('../../utils')
 
 
 const main = {
