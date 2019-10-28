@@ -362,4 +362,39 @@ node: {
 这两天踩了一个大坑，
 打包完的exe无法启动，弄得我一脸懵逼，于是打了查找各种资料，以及各种尝试后确定，就是程序找不到main入口文件，，命名在dev模式下以及打包完的代码，都可以直接用electron启动的，愁坏了我，终于在偶然间，不小心打包了package.json文件进去，结果就能够出现窗口了，万分激动，又有点懵逼，难不成electron难不成是靠着这个文件找入口的？无论如何，先尝试再说。
 
+electron 服务器
+```bash
+yarn add koa
+yarn add @types/koa -D
+```
+安装常用的中间件
 
+静态资源加载
+```bash
+yarn add -D koa-static
+yarn add @types/koa-static -D
+```
+
+cors跨域资源共享
+```bash
+yarn add koa2-cors
+yarn add @types/koa2-cors -D
+```
+
+body 解析中间件
+```bash
+yarn add koa-bodyparser
+yarn add @types/koa-bodyparser -D
+```
+
+koa2 路由
+```bash
+yarn add koa-router 
+yarn add -D @types/koa-router
+```
+
+日志
+```bash
+yarn add koa-logger@2
+yarn add -D @types/koa-logger@2
+```

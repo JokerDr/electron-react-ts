@@ -1,6 +1,7 @@
 /** @format */
 
 import { app, BrowserWindow } from 'electron';
+import appServer from './server'
 // import * as path from 'path';
 // import * as url from 'url';
 // Keep a global reference of the window object, if you don't, the window will
@@ -31,7 +32,10 @@ function createWindow() {
     });
 }
 
-app.on('ready', createWindow);
+app.on('ready', ():void => {
+  createWindow();
+  appServer();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
