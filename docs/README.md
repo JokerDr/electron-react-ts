@@ -411,3 +411,25 @@ yarn add @types/react-router-dom -D
 
 ```
 
+最后koa在哪里执行呢，这个着实困扰了我很久，main还是renderer， 凭感觉来说我更倾向renderer，毕竟渲染进程，但事实上如果我在renderer的入口文件内引入koa的话，koa的koa-bodyparser||koa-body不但可能会出现__webpack_require__ 相关的错误，而且当我们用费劲精力找到的
+```bash
+{
+  test: /node_modules[\/\\](iconv-lite)[\/\\].+/,
+  resolve: {
+    aliasFields: ['main']
+  }
+}
+```
+尝试去修复时，反而会出现require is no defiend的问题，说到这里，大家都懂了，这是renderer，webpack对renderer进程配置的electron-renderer,而koa是node，所以很遗憾，renderer不应该引入koa
+那么就剩下main进程了，但是，当我尝试引入koa时，又又踩了坑，
+```bash
+1.直接在文件最顶，引入： import './appServer' ,报错
+2.先引入，再在app.ready()中调用，无效；
+3.最后，终于在一个外国友人的示例代码中找到写法 
+  app.server = require('./app.js');  
+  但是我翻遍文档，看了electron的app 源码里所有的type，也没有server，略感懵逼。
+  但接下来反应过来，这代码的重点是，在ready的时候异步引入啊。
+  所以直接import('./appServer')就好啦！
+
+```
+

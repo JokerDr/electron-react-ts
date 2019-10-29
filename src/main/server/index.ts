@@ -5,7 +5,6 @@ import serve from 'koa-static';
 
 import bodyParser from 'koa-bodyparser';
 import cors from 'koa2-cors';
-
 // import logger from 'koa-logger';
 
 import router from './routes';
