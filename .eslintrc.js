@@ -43,6 +43,14 @@ module.exports = {
         '@typescript-eslint/interface-name-prefix': [
           'error',
           { 'prefixWithI': "always" }
+        ],
+        '@typescript-eslint/no-unused-vars': [
+          "error",
+          {
+            "vars": "all",
+            "args": "none",
+            "ignoreRestSiblings": false
+          }
         ]
     }
 };

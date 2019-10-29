@@ -1,17 +1,16 @@
 /** @format */
-
-import koa from 'koa';
+import 'electron'
+import Koa from 'koa';
 import serve from 'koa-static';
-import cors from 'koa2-cors';
+
 import bodyParser from 'koa-bodyparser';
+import cors from 'koa2-cors';
 
 // import logger from 'koa-logger';
 
-
 import router from './routes';
 
-const app: koa = new koa();
-
+const app = new Koa();
 app
   .use(cors())
   .use(bodyParser({
@@ -19,11 +18,11 @@ app
   }))
   .use(router.routes())
   // .use(logger())
-  .use(serve(__dirname + '../../assets/', {
-        maxage: 24 * 60 * 60 * 1000,
-    })
+  .use(
+      serve(__dirname + '../../assets/', {
+          maxage: 24 * 60 * 60 * 1000,
+      }),
   );
-
 app.listen(8881, 'localhost');
 
-export default ():koa => app;
+

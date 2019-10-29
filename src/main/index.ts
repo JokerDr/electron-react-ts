@@ -1,11 +1,7 @@
 /** @format */
 
 import { app, BrowserWindow } from 'electron';
-import appServer from './server'
-// import * as path from 'path';
-// import * as url from 'url';
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
+
 let mainWindow: BrowserWindow | null;
 
 function createWindow() {
@@ -13,28 +9,27 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-
         webPreferences: {
             nodeIntegration: true,
             // preload: path.join(__dirname,'../../','src/renderers/pages/a/index.tsx')
         },
     });
 
-    // and load the index.html of the app.
-    // mainWindow.loadFile('index.html')
     const winURL =
       process.env.NODE_ENV === 'development'
         ? `http://localhost:9080`
         : `file:///${__dirname}/index.html`;
+
     mainWindow.loadURL(winURL);
+
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
 }
 
 app.on('ready', ():void => {
+  import('./server');
   createWindow();
-  appServer();
 });
 
 // Quit when all windows are closed.

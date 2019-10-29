@@ -383,8 +383,10 @@ yarn add @types/koa2-cors -D
 
 body 解析中间件
 ```bash
-yarn add koa-bodyparser
-yarn add @types/koa-bodyparser -D
+# yarn add koa-bodyparser
+# yarn add @types/koa-bodyparser -D
+yarn add koa-body
+# yarn add @types/koa-body -D
 ```
 
 koa2 路由
@@ -398,3 +400,14 @@ yarn add -D @types/koa-router
 yarn add koa-logger@2
 yarn add -D @types/koa-logger@2
 ```
+
+添加react-router-dom,
+ps：react-router-dom 是基于react-router的封装，在browser环境下运行的
+另外： 当前react-router-config不支持react-router-dom@5.x，无法使用配置化
+安装：
+```bash
+yarn add  react-router-dom
+yarn add @types/react-router-dom -D
+
+```
+
